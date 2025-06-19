@@ -1,4 +1,4 @@
-package com.example.end_to_end_challenge;
+package com.example.end_to_end_challenge.entity;
 
 import jakarta.persistence.*;
 
