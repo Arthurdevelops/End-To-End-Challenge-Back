@@ -1,9 +1,9 @@
 package com.example.end_to_end_challenge.service;
 
-import com.example.end_to_end_challenge.dto.UserDTO;
-import com.example.end_to_end_challenge.entity.User;
+import com.example.end_to_end_challenge.dto.PlayerDTO;
+import com.example.end_to_end_challenge.entity.Player;
 import com.example.end_to_end_challenge.exception.ResourceNotFoundException;
-import com.example.end_to_end_challenge.repository.UserRepository;
+import com.example.end_to_end_challenge.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,36 +13,34 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserService {
+public class PlayerService {
 
     @Autowired
-    private UserRepository userRepository;
+    private PlayerRepository userRepository;
 
-    public List<UserDTO> getAllUsers() {
+    public List<PlayerDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
-    public UserDTO createUser(UserDTO userDTO) {
-        User user = new User();
+    public PlayerDTO createUser(PlayerDTO userDTO) {
+        Player user = new Player();
         user.setUsername(userDTO.getUsername());
-        user.setEmail(userDTO.getEmail());
-        User savedUser = userRepository.save(user);
+        Player savedUser = userRepository.save(user);
         return convertToDto(savedUser);
     }
 
-    public UserDTO getUserById(Long id) {
-        User user = userRepository.findById(id)
+    public PlayerDTO getUserById(Long id) {
+        Player user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         return convertToDto(user);
     }
 
-    private UserDTO convertToDto(User user) {
-        UserDTO dto = new UserDTO();
+    private PlayerDTO convertToDto(Player user) {
+        PlayerDTO dto = new PlayerDTO();
         dto.setUsername(user.getUsername());
-        dto.setEmail(user.getEmail());
         return dto;
     }
 }

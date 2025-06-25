@@ -1,8 +1,7 @@
 package com.example.end_to_end_challenge.dto;
 
-public class UserDTO {
+public class PlayerDTO {
     private String username;
-    private String email;
 
     public String getUsername() {
         return username;
@@ -10,13 +9,5 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
