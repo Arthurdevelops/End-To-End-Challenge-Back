@@ -1,5 +1,8 @@
 package com.example.end_to_end_challenge.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +13,15 @@ public class Player {
     private Long id;
 
     private String username;
+
+    @ManyToMany
+    @JoinTable(
+        name = "contest_player",
+        joinColumns = @JoinColumn(name = "player_id"),
+        inverseJoinColumns = @JoinColumn(name = "contest_id")
+    )
+    
+    private Set<Contest> contests = new HashSet<>();
 
     public String getUsername(){
         return this.username;
