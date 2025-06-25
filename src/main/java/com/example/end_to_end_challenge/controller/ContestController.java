@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.end_to_end_challenge.entity.Contest;
+import com.example.end_to_end_challenge.dto.ContestDTO;
+import com.example.end_to_end_challenge.dto.PlayerDTO;
 import com.example.end_to_end_challenge.service.ContestService;
 
 @RestController
@@ -26,14 +28,27 @@ public class ContestController {
     private ContestService contestService;
 
     @PostMapping
-    public ResponseEntity<Contest> createContest(@RequestBody Contest contest) {
+    public ResponseEntity<ContestDTO> createContest(@RequestBody ContestDTO contest) {
         contestService.createContest(contest);
         return ResponseEntity.ok(contest);
     }
 
     @GetMapping
-    public ResponseEntity<List<Contest>> getContests() {
+    public ResponseEntity<List<ContestDTO>> getContests() {
         contestService.getAllContests();
         return ResponseEntity.ok(contestService.getAllContests());
+    }
+
+    @PostMapping("/{contestId}/players/{playerId}")
+    public ResponseEntity<ContestDTO> addPlayerToContest(@PathVariable Long contestId, @PathVariable Long playerId) {
+        ContestDTO contest = contestService.addPlayerToContest(contestId, playerId);
+        return ResponseEntity.ok(contest);
+    }
+
+    @GetMapping("/{contestId}/players")
+    public ResponseEntity<List<PlayerDTO>> getPlayersInContest(@PathVariable Long contestId) {
+        List<PlayerDTO> players = contestService.getPlayersOfContest(contestId);
+        System.out.println("Players in contest: " + players);
+        return ResponseEntity.ok(players);
     }
 }

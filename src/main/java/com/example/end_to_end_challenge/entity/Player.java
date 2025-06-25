@@ -30,4 +30,12 @@ public class Player {
     public void setUsername(String username){
         this.username = username;
     }
+
+    public Set<Contest> getContests() {
+        return contests;
+    }
+
+    public void setContests(Set<Contest> contests) {
+        this.contests = contests;
+    }
 }
