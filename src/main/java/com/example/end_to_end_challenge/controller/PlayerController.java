@@ -1,6 +1,8 @@
 package com.example.end_to_end_challenge.controller;
 
 import com.example.end_to_end_challenge.dto.PlayerDTO;
+import com.example.end_to_end_challenge.entity.Player;
+import com.example.end_to_end_challenge.repository.PlayerRepository;
 import com.example.end_to_end_challenge.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/players")
 @CrossOrigin(origins = "*")
 public class PlayerController {
 
@@ -24,7 +26,7 @@ public class PlayerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PlayerDTO> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(playerService.getUserById(id));
+        return ResponseEntity.ok(playerService.getPlayer(id));
     }
 
     @PostMapping

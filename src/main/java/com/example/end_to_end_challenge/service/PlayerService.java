@@ -32,10 +32,16 @@ public class PlayerService {
         return convertToDto(savedUser);
     }
 
-    public PlayerDTO getUserById(Long id) {
+    public PlayerDTO getPlayer(Long id) {
         Player user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         return convertToDto(user);
+    }
+
+    public Player getPlayerEntity(Long id) {
+        Player user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        return user;
     }
 
     private PlayerDTO convertToDto(Player user) {
