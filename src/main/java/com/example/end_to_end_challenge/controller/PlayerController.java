@@ -1,8 +1,6 @@
 package com.example.end_to_end_challenge.controller;
 
 import com.example.end_to_end_challenge.dto.PlayerDTO;
-import com.example.end_to_end_challenge.entity.Player;
-import com.example.end_to_end_challenge.repository.PlayerRepository;
 import com.example.end_to_end_challenge.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Contest {
@@ -28,6 +29,9 @@ public class Contest {
 
     @ManyToMany(mappedBy = "contests")
     private Set<Player> players = new HashSet<>();
+
+    @OneToMany(mappedBy = "contest")
+    private Set<Round> rounds = new HashSet<>();
 
     public Contest() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -73,5 +77,13 @@ public class Contest {
 
     public void setPlayers(Set<Player> players) {
         this.players = players;
+    }
+
+    public Set<Round> getRounds() {
+        return rounds;
+    }   
+
+    public void setRound(Set<Round> rounds) {
+        this.rounds = rounds;
     }
 }
