@@ -23,6 +23,14 @@ public class Player {
     
     private Set<Contest> contests = new HashSet<>();
 
+    public Player() {
+        // Default constructor
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getUsername(){
         return this.username;
     }
