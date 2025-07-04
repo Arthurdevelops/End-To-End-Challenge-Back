@@ -1,6 +1,5 @@
 package com.example.end_to_end_challenge.dto;
 
-import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -8,10 +7,8 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContestDTO {
+public class RoundScoreDTO {
     private Long id;
-    private String name;
-    private String description;
-    private String createdAt;
-    private List<PlayerDTO> players;
+    private Long playerId;
+    private int score;
 }

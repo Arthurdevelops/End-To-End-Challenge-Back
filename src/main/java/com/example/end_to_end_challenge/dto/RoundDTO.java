@@ -1,31 +1,18 @@
 package com.example.end_to_end_challenge.dto;
 
 import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoundDTO {
+    private Long id;
+    private String createdAt;
     private Long roundId;
     private Long contestId;
-    private List<RoundWithScoreDTO> scores;
-
-    public Long getRoundId() {
-        return roundId;
-    }
-    public void setRoundId(Long roundId) {
-        this.roundId = roundId;
-    }
-
-    public Long getContestId() {
-        return contestId;
-    }
-    public void setContestId(Long contestId) {
-        this.contestId = contestId;
-    }
-
-    public List<RoundWithScoreDTO> getScores() {
-        return scores;
-    }
-    public void setScores(List<RoundWithScoreDTO> scores) {
-        this.scores = scores;
-    }
-}       
+    private List<RoundScoreDTO> scores;
+}
 

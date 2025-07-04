@@ -4,9 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="players")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,30 +26,5 @@ public class Player {
         joinColumns = @JoinColumn(name = "player_id"),
         inverseJoinColumns = @JoinColumn(name = "contest_id")
     )
-    
     private Set<Contest> contests = new HashSet<>();
-
-    public Player() {
-        // Default constructor
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername(){
-        return this.username;
-    }
-
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    public Set<Contest> getContests() {
-        return contests;
-    }
-
-    public void setContests(Set<Contest> contests) {
-        this.contests = contests;
-    }
 }

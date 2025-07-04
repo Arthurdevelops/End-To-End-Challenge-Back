@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.end_to_end_challenge.dto.RoundDTO;
-import com.example.end_to_end_challenge.dto.RoundWithScoreDTO;
+import com.example.end_to_end_challenge.dto.RoundScoreDTO;
 import com.example.end_to_end_challenge.entity.Round;
 import com.example.end_to_end_challenge.entity.RoundScore;
 import com.example.end_to_end_challenge.repository.RoundRepository;
@@ -34,7 +34,7 @@ public class RoundService {
     public RoundDTO createRound(RoundDTO roundDTO) {
         Round round = new Round();
         round.setContest(contestService.getContest(roundDTO.getContestId()));
-        for (RoundWithScoreDTO scoreDTO : roundDTO.getScores()) {
+        for (RoundScoreDTO scoreDTO : roundDTO.getScores()) {
             RoundScore score = new RoundScore();
             score.setRound(round);
             score.setScore(scoreDTO.getScore());
@@ -52,10 +52,10 @@ public class RoundService {
         for (Round round : rounds) {
             RoundDTO dto = new RoundDTO();
             dto.setRoundId(round.getId());
-            List<RoundWithScoreDTO> scoreDTOs = new ArrayList<>();
+            List<RoundScoreDTO> scoreDTOs = new ArrayList<>();
             for (RoundScore score : scores) {
                 if (score.getRound().getId().equals(round.getId())) {
-                    RoundWithScoreDTO scoreDTO = new RoundWithScoreDTO();
+                    RoundScoreDTO scoreDTO = new RoundScoreDTO();
                     scoreDTO.setPlayerId(score.getPlayer().getId());
                     scoreDTO.setScore(score.getScore());
                     scoreDTOs.add(scoreDTO);
